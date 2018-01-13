@@ -31,6 +31,8 @@ public class OI {
     public JoystickButton j0b1;
     public JoystickButton j0b2;
     
+    public boolean TankDrive = true;
+    
     public OI() {
 
         j0 = new Joystick(0);
@@ -39,8 +41,8 @@ public class OI {
         j0b1 = new JoystickButton(j0, 1);
         j0b2 = new JoystickButton(j0, 2);
 
-        j0b1.whileHeld(new MecanumDrive());
-        j0b2.whileHeld(new TankDrive());
+    
+        j0b2.whenPressed(new ToggleDrive());
         // SmartDashboard Buttons
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
 

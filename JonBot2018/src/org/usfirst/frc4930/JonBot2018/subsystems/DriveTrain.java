@@ -31,7 +31,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 public class DriveTrain extends Subsystem {
 	
 	public double leftSide, rightSide, xSpeed, ySpeed, zRotation;
-
+	
+	public boolean tankDrive = true;
     @Override
     public void initDefaultCommand() {
     	//setDefaultCommand(new MecanumDrive());
@@ -51,18 +52,29 @@ public class DriveTrain extends Subsystem {
          RobotMap.dtMecanumMasterMotors.driveCartesian(ySpeed, xSpeed, zRotation);
     }
     
+    public void toggle() {
+    	if(tankDrive){
+    		tankDrive = false;
+    	}
+    	else {
+    		tankDrive = true;
+    	}
+    }
     
     public void tankDrive() {
         double left = Robot.oi.j0.getY();
         double right = Robot.oi.j1.getY();
-        tankMove(left, right);
+        if(tankDrive){
+        	tankMove(left, right);
+        }
     }
     public void mecanumDrive() {
     	double xSpeed = Robot.oi.j0.getX();
     	double ySpeed = Robot.oi.j0.getY();      
         double zRotation = Robot.oi.j0.getZ();
-        mecanumMove(xSpeed, ySpeed, zRotation);
-        
+        if(!tankDrive){
+        	mecanumMove(xSpeed, ySpeed, zRotation);
+        }
     }
     public void tankStop() {
     	RobotMap.dtTankMasterMotors.stopMotor();
