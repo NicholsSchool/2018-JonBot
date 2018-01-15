@@ -8,7 +8,11 @@
 	<classpathentry kind="var" path="cscore" sourcepath="cscore.sources"/>
 	<classpathentry kind="var" path="wpiutil" sourcepath="wpiutil.sources"/>
 	<classpathentry kind="lib" path="lib/CTRE_Phoenix-sources.jar"/>
-	<classpathentry kind="lib" path="lib/CTRE_Phoenix.jar" sourcepath="lib/CTRE_Phoenix-sources.jar"/>
+	<classpathentry kind="lib" path="lib/CTRE_Phoenix.jar" sourcepath="lib/CTRE_Phoenix-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/JonBot2018/lib/CTRE_Phoenix-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/CTRE_Phoenix-javadoc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
