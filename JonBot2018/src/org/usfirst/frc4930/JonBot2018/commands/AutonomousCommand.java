@@ -11,7 +11,6 @@
 
 package org.usfirst.frc4930.JonBot2018.commands;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc4930.JonBot2018.Robot;
 
 /**
  *

@@ -17,8 +17,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -29,7 +27,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class RobotMap {
 
 	public static DifferentialDrive dtTankMasterMotors;
-	public static MecanumDrive dtMecanumMasterMotors;
+//	public static MecanumDrive dtMecanumMasterMotors;
     public static WPI_TalonSRX dtRFMaster;
     public static WPI_TalonSRX dtLFMaster;
     public static WPI_TalonSRX dtRBMaster;
@@ -48,24 +46,29 @@ public class RobotMap {
     	
   
     	
-        dtRFMaster = new WPI_TalonSRX(8);  
-        dtLFMaster = new WPI_TalonSRX(7);
-        dtRBMaster = new WPI_TalonSRX(6);
-        dtLBMaster = new WPI_TalonSRX(5);
+        dtRFMaster = new WPI_TalonSRX(28);  
+        dtLFMaster = new WPI_TalonSRX(27);
+        dtRBMaster = new WPI_TalonSRX(26);
+        dtLBMaster = new WPI_TalonSRX(25);
         
-        dtRFSlave = new WPI_TalonSRX(10);
-        dtLFSlave = new WPI_TalonSRX(9);
-        dtRBSlave = new WPI_TalonSRX(4);
-        dtLBSlave = new WPI_TalonSRX(3); 
+        dtRFSlave = new WPI_TalonSRX(30);
+        dtLFSlave = new WPI_TalonSRX(29);
+        dtRBSlave = new WPI_TalonSRX(24);
+        dtLBSlave = new WPI_TalonSRX(23); 
         
-        dtRFSlave.set(ControlMode.Follower, 8);
-        dtRBSlave.set(ControlMode.Follower, 6);
-        dtLFSlave.set(ControlMode.Follower, 7);
-        dtLBSlave.set(ControlMode.Follower, 5);
+        dtRFMaster.setInverted(true);
+        dtRBMaster.setInverted(true);
+        
+        dtRFSlave.set(ControlMode.Follower, 28);
+        dtRBSlave.set(ControlMode.Follower, 26);
+        dtLFSlave.set(ControlMode.Follower, 27);
+        dtLBSlave.set(ControlMode.Follower, 25);
         
         leftMaster = new SpeedControllerGroup(dtRFMaster, dtRBMaster);
         rightMaster = new SpeedControllerGroup(dtLFMaster, dtLBMaster);
         dtTankMasterMotors = new DifferentialDrive(leftMaster, rightMaster);
-        dtMecanumMasterMotors = new MecanumDrive(dtLFMaster, dtLBMaster, dtRFMaster, dtRBMaster);
+        dtTankMasterMotors.setSafetyEnabled(false);
+//        dtMecanumMasterMotors = new MecanumDrive(dtLFMaster, dtLBMaster, dtRFMaster, dtRBMaster);
+//        dtMecanumMasterMotors.setSafetyEnabled(false);
     }
 }
