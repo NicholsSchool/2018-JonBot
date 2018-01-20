@@ -44,8 +44,8 @@ public class Robot extends TimedRobot {
     public static OI oi;
    
     public static DriveTrain driveTrain;
-
-  
+    public static Potentiometer potentiometer;
+    public static LimitSwitch limitSwitch;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -56,7 +56,8 @@ public class Robot extends TimedRobot {
         RobotMap.init();
 
         driveTrain = new DriveTrain();
-
+        potentiometer = new Potentiometer();
+        limitSwitch = new LimitSwitch();
         oi = new OI();
 
         // Add commands to Autonomous Sendable Chooser
@@ -122,9 +123,15 @@ public class Robot extends TimedRobot {
    //    RobotMap.leftMaster.set(0.4);
     //    RobotMap.rightMaster.set(0.4);
    //     RobotMap.dtTankMasterMotors.tankDrive(0.4, 0.4, false);
-         //Robot.driveTrain.tankMove(j0.getY(), j0.getY());
+   //      Robot.driveTrain.tankMove(j0.getY(), j0.getY());
    //     Robot.driveTrain.tankDrive();
-        Robot.driveTrain.mecanumDrive();
+   //     Robot.driveTrain.mecanumDrive();
+        
+     //   Robot.driveTrain.tankMove(Robot.potentiometer.getNum(), Robot.potentiometer.getNum());
+     //   Robot.potentiometer.stop(4);
+        SmartDashboard.putNumber("Pot value: ", Robot.potentiometer.getDegree()); 
+        SmartDashboard.putNumber("Degree Value: ", Robot.potentiometer.getNum());
+        SmartDashboard.putBoolean("LimitSwitch: ", Robot.limitSwitch.getPosition());
     }
     public void testInit() {
     			

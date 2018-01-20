@@ -14,6 +14,8 @@ package org.usfirst.frc4930.JonBot2018;
 import org.usfirst.frc4930.JonBot2018.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 import org.usfirst.frc4930.JonBot2018.subsystems.*;
 
 
@@ -26,14 +28,17 @@ public class OI {
     public Joystick j0;
     public Joystick j1;
 
+    public JoystickButton j0b1;
 
     public OI() {
     
 
         j0 = new Joystick(0);
         j1 = new Joystick(1);
-
-
+        
+        j0b1 = new JoystickButton(j0, 1);
+        
+        j0b1.whenPressed(new PotDrive());
 
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
 

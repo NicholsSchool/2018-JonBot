@@ -15,9 +15,12 @@ package org.usfirst.frc4930.JonBot2018;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
@@ -43,6 +46,10 @@ public class RobotMap {
     public static DifferentialDrive dtTankMasterMotors;
     
     public static MecanumDrive dtMecanumMasterMotors;
+    
+    public static AnalogPotentiometer pot;
+    public static DigitalInput limSwitch;
+    
     
     public static void init() {
         
@@ -74,5 +81,9 @@ public class RobotMap {
         
         dtMecanumMasterMotors = new MecanumDrive(dtLFMaster, dtLBMaster, dtRFMaster, dtRBMaster);
         dtMecanumMasterMotors.setSafetyEnabled(false);
+        
+        
+        pot = new AnalogPotentiometer(0, 360, 0);
+        limSwitch = new DigitalInput(8);
     }
 }
