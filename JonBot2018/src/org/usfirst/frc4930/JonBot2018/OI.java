@@ -29,6 +29,7 @@ public class OI {
     public Joystick j1;
 
     public JoystickButton j0b1;
+    public JoystickButton j0b2;
 
     public OI() {
     
@@ -37,9 +38,10 @@ public class OI {
         j1 = new Joystick(1);
         
         j0b1 = new JoystickButton(j0, 1);
+        j0b2 = new JoystickButton(j0, 2);
         
         j0b1.whenPressed(new PotDrive());
-
+        j0b2.whenPressed(new PositionLoop(1000));
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
 
     }

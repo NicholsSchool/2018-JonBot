@@ -13,6 +13,7 @@ package org.usfirst.frc4930.JonBot2018;
 
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -68,10 +69,29 @@ public class RobotMap {
 //        dtRFSlave.setInverted(true);
 //        dtRBSlave.setInverted(true);
         
-        dtRFSlave.set(ControlMode.Follower, 28);
-        dtRBSlave.set(ControlMode.Follower, 26);
-        dtLFSlave.set(ControlMode.Follower, 27);
-        dtLBSlave.set(ControlMode.Follower, 25);
+        
+        //Undo Comments below for proper Drivetrain commands
+        
+   //     dtRFSlave.set(ControlMode.Follower, 28);
+   //     dtRBSlave.set(ControlMode.Follower, 26);
+   //     dtLFSlave.set(ControlMode.Follower, 27);
+   //     dtLBSlave.set(ControlMode.Follower, 25);
+        
+        dtRFMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 100);
+        dtRBMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 100);
+        dtLFMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 100);
+        dtLBMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 100);
+        
+        dtRFMaster.setSensorPhase(false);
+        dtRBMaster.setSensorPhase(false);
+        dtLFMaster.setSensorPhase(false);
+        dtLBMaster.setSensorPhase(false);
+        
+        dtRFMaster.setSelectedSensorPosition(0, 0, 100);
+        dtRBMaster.setSelectedSensorPosition(0, 0, 100);
+        dtLFMaster.setSelectedSensorPosition(0, 0, 100);
+        dtLBMaster.setSelectedSensorPosition(0, 0, 100);
+    
         
         leftMaster = new SpeedControllerGroup(dtRFMaster, dtRBMaster);
         rightMaster = new SpeedControllerGroup(dtLFMaster, dtLBMaster);

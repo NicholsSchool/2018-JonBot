@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
 
     Command autonomousCommand;
     SendableChooser<Command> chooser = new SendableChooser<>();
-    public static WPI_TalonSRX testMotor;
+//    public static WPI_TalonSRX testMotor;
     public static WPI_TalonSRX dtRFMaster;
     public static WPI_TalonSRX dtRBMaster;
     public static WPI_TalonSRX dtLFMaster;
@@ -109,7 +109,10 @@ public class Robot extends TimedRobot {
       //  Robot.dtRFMaster = new WPI_TalonSRX(28);       
       //  Robot.dtRBMaster = new WPI_TalonSRX(26);
       //  Robot.dtLFMaster = new WPI_TalonSRX(27);
-        Robot.dtLBMaster = new WPI_TalonSRX(25);
+        RobotMap.dtRBMaster.setSelectedSensorPosition(0, 0, 100);
+        RobotMap.dtRFMaster.setSelectedSensorPosition(0, 0, 100);
+        RobotMap.dtLFMaster.setSelectedSensorPosition(0, 0, 100);
+        RobotMap.dtLBMaster.setSelectedSensorPosition(0, 0, 100);
         j0 = new Joystick(0);
     }
 
@@ -123,15 +126,33 @@ public class Robot extends TimedRobot {
    //    RobotMap.leftMaster.set(0.4);
     //    RobotMap.rightMaster.set(0.4);
    //     RobotMap.dtTankMasterMotors.tankDrive(0.4, 0.4, false);
-   //      Robot.driveTrain.tankMove(j0.getY(), j0.getY());
+       Robot.driveTrain.tankMove(0.4, 0.4);
    //     Robot.driveTrain.tankDrive();
    //     Robot.driveTrain.mecanumDrive();
         
      //   Robot.driveTrain.tankMove(Robot.potentiometer.getNum(), Robot.potentiometer.getNum());
      //   Robot.potentiometer.stop(4);
+    //   RobotMap.dtLBMaster.set(0.3);
+      
+    //    RobotMap.dtRBMaster.set(Robot.oi.j0.getY());
+        
+        
+        
+      //  Robot.driveTrain.setPosition(1000);
         SmartDashboard.putNumber("Pot value: ", Robot.potentiometer.getDegree()); 
         SmartDashboard.putNumber("Degree Value: ", Robot.potentiometer.getNum());
         SmartDashboard.putBoolean("LimitSwitch: ", Robot.limitSwitch.getPosition());
+        SmartDashboard.putNumber("Right Front Master Encoder: ", RobotMap.dtRFMaster.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Right Back Master Encoder: ", RobotMap.dtRBMaster.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("Left Front Master Encoder: ", RobotMap.dtLFMaster.getSelectedSensorPosition(0));
+      
+        SmartDashboard.putNumber("Left Back Encoder: ", RobotMap.dtLBMaster.getSelectedSensorPosition(0));
+        SmartDashboard.putString("LB MODE: ", RobotMap.dtLBMaster.getControlMode().toString());
+        SmartDashboard.putNumber("LB QUAD: ", RobotMap.dtLBMaster.getSensorCollection().getAnalogIn());
+        SmartDashboard.putNumber("RB QUAD: ", RobotMap.dtRBMaster.getSensorCollection().getAnalogIn());
+        
+        System.out.println(RobotMap.dtLBMaster.getSensorCollection().getQuadraturePosition());
+
     }
     public void testInit() {
     			
